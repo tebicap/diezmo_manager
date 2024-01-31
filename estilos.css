@@ -537,6 +537,16 @@ hr {
   font-size: 0.9em;
   margin-right: 2px;
 }
+.reserva_monto {
+  color: #8500ea;
+  padding-top: 4px;
+  cursor: pointer;
+}
+.reserva_monto > span {
+  color: grey;
+  font-size: 0.9em;
+  margin-right: 2px;
+}
 
 
 /* PIE */
@@ -769,4 +779,9 @@ hr {
 .noscrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.animacion_nuevoitem{
+  background-color: #93EA00;
+  transition: background-color 1.5s;
 }

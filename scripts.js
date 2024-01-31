@@ -161,7 +161,7 @@ function calculos_display(){
 	document.getElementById("disponible_numero").innerText= (suma_diezmos - suma_salidas).toFixed(2).toString();
 	document.getElementById("reservado_num").querySelector('span').innerText= suma_reservas.toFixed(2).toString(); // reservado
 }
-function actualiza_entradas_HTML(){
+function actualiza_entradas_HTML(nota){
 	// actualiza visualización en HTML
 	
 	//obtengo la entrada de muestra
@@ -218,7 +218,15 @@ function actualiza_entradas_HTML(){
 		console.log("array", array);
 
 	});
-	
+	// resalto ultima entrada agregada (ayuda visual para el usuario)
+	if (!(test = (nota == "eliminar") )){ // solo si no estoy eliminando item
+		document.getElementById("entrada_muestra").nextSibling.classList.add("animacion_nuevoitem");
+		setTimeout(() => {
+			console.log("sleep...");
+			document.getElementById("entrada_muestra").nextSibling.style.backgroundColor="#93EA00ff";
+			document.getElementById("entrada_muestra").nextSibling.style.backgroundColor="#00808000";
+		}, 10);
+	}
 }
 
 
@@ -264,7 +272,7 @@ function guarda_salida(){
 	// cierra popup
 	oculta_dialogo(element);
 }
-function actualiza_salidas_HTML(){
+function actualiza_salidas_HTML(nota){
 	// actualiza visualización en HTML
 	
 	//obtengo la salida de muestra
@@ -318,6 +326,15 @@ function actualiza_salidas_HTML(){
 		console.log("array", array);
 
 	});
+	// resalto ultima entrada agregada (ayuda visual para el usuario)
+	if (!(test = (nota == "eliminar") )){ // solo si no estoy eliminando item
+		document.getElementById("salida_muestra").nextSibling.classList.add("animacion_nuevoitem");
+		setTimeout(() => {
+			console.log("sleep...");
+			document.getElementById("salida_muestra").nextSibling.style.backgroundColor="#93EA00ff";
+			document.getElementById("salida_muestra").nextSibling.style.backgroundColor="#00808000";
+		}, 10);
+	}
 }
 
 function nueva_reserva(){
@@ -362,7 +379,7 @@ function guarda_reserva(){
 	// cierra popup
 	oculta_dialogo(element);
 }
-function actualiza_reservas_HTML(){
+function actualiza_reservas_HTML(nota){
 	// actualiza visualización en el HTML
 	
 	//obtengo la reserva de muestra
@@ -389,7 +406,7 @@ function actualiza_reservas_HTML(){
 
 		// cargo info del diccionario al clon
 		let sinsimbolo_diezmo = reserva[0].substring(1);
-		clonado.querySelector(".salida_monto num").textContent = sinsimbolo_diezmo; // diezmo
+		clonado.querySelector(".reserva_monto num").textContent = sinsimbolo_diezmo; // diezmo
 		if (reserva[1] !== ''){
 			clonado.querySelector(".entrada_nota").textContent = reserva[1]; // nota
 		}
@@ -416,6 +433,15 @@ function actualiza_reservas_HTML(){
 		console.log("array", array);
 
 	});
+	// resalto ultima entrada agregada (ayuda visual para el usuario)
+	if (!(test = (nota == "eliminar") )){ // solo si no estoy eliminando item
+		document.getElementById("reserva_muestra").nextSibling.classList.add("animacion_nuevoitem");
+		setTimeout(() => {
+			console.log("sleep...");
+			document.getElementById("reserva_muestra").nextSibling.style.backgroundColor="#93EA00ff";
+			document.getElementById("reserva_muestra").nextSibling.style.backgroundColor="#00808000";
+		}, 10);
+	}
 }
 function oculta_dialogo(element){
 	//limpio info primero
@@ -592,19 +618,19 @@ function eliminar_item(tipo){
 		let indice = entrada.id.split('_')[1];
 		app_diezmos.entradas.splice(indice, 1); //remueve '1' item desde el rango indicado
 		//actualiza HTML
-		actualiza_entradas_HTML();
+		actualiza_entradas_HTML("eliminar");
 	} else if (tipo == "salida"){
 		//elimino item
 		let indice = entrada.id.split('_')[1];
 		app_diezmos.salidas.splice(indice, 1); //remueve '1' item desde el rango indicado
 		//actualiza HTML
-		actualiza_salidas_HTML();
+		actualiza_salidas_HTML("eliminar");
 	} else if (tipo == "reserva"){
 		//elimino item
 		let indice = entrada.id.split('_')[1];
 		app_diezmos.reservas.splice(indice, 1); //remueve '1' item desde el rango indicado
 		//actualiza HTML
-		actualiza_reservas_HTML();
+		actualiza_reservas_HTML("eliminar");
 	}
 
 	//actualiza display
