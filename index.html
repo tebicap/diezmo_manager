@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="estilos.css" type="text/css">
 <script src="scripts.js"></script>
 </header>	
-<body onload="inicio()">
+<body class="noscrollbar" onload="inicio()">
 	<!-- <h1>DIEZMOS</h1> -->
 	<img class="logo_img" src="logo.webp" alt="DIEZMOS APP">
 	<div id="info_boton" class="info_boton" onclick="info()">i</div>
@@ -42,11 +42,17 @@
 	<div id=infoprimaria class="infoprimaria">
 		<div class="disponible_contenedor">
 			<div class="disponible_label">DISPONIBLE</div>
-			<div class="disponible_numero round"><span>$</span><span id="disponible_numero">cargando...</span><div id="reservado_num" class="reservado_num">re: <span>0,00</span></div></div>	
+			<div class="disponible_numero round">
+				<div id="disponible_signoynumero">
+					<span>$&nbsp;</span><span id="disponible_numero">cargando...</span>
+				</div>
+				<div id="reservado_num" class="reservado_num">re: <span>0,00</span></div>
+			</div>	
 		</div>
 	
 		<div class="infoprimaria_flecha">
-			<span><</span>	
+			<span id="puntaflecha"><</span>	
+			<span id="rayaflecha"></span>	
 		</div>
 
 		<div class="acumulado_contenedor">
@@ -98,6 +104,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="fin_de_items"><div></div></div>
 		</div>
 
 		<div id="salidas" class="tabcontent">
