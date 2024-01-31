@@ -121,7 +121,7 @@ function guarda_entrada(){
 	guardar_localstorage("entradas");
 	
 	// actualiza entrada en HTML
-	actualiza_entradas_HTML();
+	actualiza_entradas_HTML("nueva");
 	
 	// cierra popup
 	oculta_dialogo(element);
@@ -218,15 +218,21 @@ function actualiza_entradas_HTML(nota){
 		console.log("array", array);
 
 	});
-	// resalto ultima entrada agregada (ayuda visual para el usuario)
-	if (!(test = (nota == "eliminar") )){ // solo si no estoy eliminando item
-		document.getElementById("entrada_muestra").nextSibling.classList.add("animacion_nuevoitem");
-		setTimeout(() => {
-			console.log("sleep...");
-			document.getElementById("entrada_muestra").nextSibling.style.backgroundColor="#93EA00ff";
-			document.getElementById("entrada_muestra").nextSibling.style.backgroundColor="#00808000";
-		}, 10);
-	}
+	// ANIMACION (resaltar item)
+	// detecto la variable 'nota' existe
+	try {
+		nota == ""; //comparo con cualquier cosa para que salga si crashea
+
+		//continúa ya que no crasheó (la nota existe!)
+
+		// resalto ultima entrada agregada (ayuda visual para el usuario)
+		if (nota == "nueva"){ // solo si no estoy eliminando item
+			resaltar_nuevoitem("entrada_muestra");
+		}else if (nota.split('_')[0] == "entrada"){ // detecto si se está moviendo un item
+			// selecciono item anterior al que quiero resaltar
+			resaltar_nuevoitem(nota);
+		}
+	} catch (error){ console.log("no hay nota"); }
 }
 
 
@@ -267,7 +273,7 @@ function guarda_salida(){
 	guardar_localstorage("salidas");
 	
 	// actualiza salidas en HTML
-	actualiza_salidas_HTML();
+	actualiza_salidas_HTML("nueva");
 
 	// cierra popup
 	oculta_dialogo(element);
@@ -326,17 +332,22 @@ function actualiza_salidas_HTML(nota){
 		console.log("array", array);
 
 	});
-	// resalto ultima entrada agregada (ayuda visual para el usuario)
-	if (!(test = (nota == "eliminar") )){ // solo si no estoy eliminando item
-		document.getElementById("salida_muestra").nextSibling.classList.add("animacion_nuevoitem");
-		setTimeout(() => {
-			console.log("sleep...");
-			document.getElementById("salida_muestra").nextSibling.style.backgroundColor="#93EA00ff";
-			document.getElementById("salida_muestra").nextSibling.style.backgroundColor="#00808000";
-		}, 10);
-	}
-}
+	// ANIMACION (resaltar item)
+	// detecto la variable 'nota' existe
+	try {
+		nota == ""; //comparo con cualquier cosa para que salga si crashea
 
+		//continúa ya que no crasheó (la nota existe!)
+
+		// resalto ultima entrada agregada (ayuda visual para el usuario)
+		if (nota == "nueva"){ // solo si no estoy eliminando item
+			resaltar_nuevoitem("salida_muestra");
+		}else if (nota.split('_')[0] == "salida"){ // detecto si se está moviendo un item
+			// selecciono item anterior al que quiero resaltar
+			resaltar_nuevoitem(nota);
+		}
+	} catch (error){ console.log("no hay nota"); }
+}
 function nueva_reserva(){
 	// añade una reserva de diezmo nueva
 	
@@ -374,7 +385,7 @@ function guarda_reserva(){
 	guardar_localstorage("reservas");
 	
 	// actualiza salidas en HTML
-	actualiza_reservas_HTML();
+	actualiza_reservas_HTML("nueva");
 
 	// cierra popup
 	oculta_dialogo(element);
@@ -433,15 +444,22 @@ function actualiza_reservas_HTML(nota){
 		console.log("array", array);
 
 	});
-	// resalto ultima entrada agregada (ayuda visual para el usuario)
-	if (!(test = (nota == "eliminar") )){ // solo si no estoy eliminando item
-		document.getElementById("reserva_muestra").nextSibling.classList.add("animacion_nuevoitem");
-		setTimeout(() => {
-			console.log("sleep...");
-			document.getElementById("reserva_muestra").nextSibling.style.backgroundColor="#93EA00ff";
-			document.getElementById("reserva_muestra").nextSibling.style.backgroundColor="#00808000";
-		}, 10);
-	}
+	// ANIMACION (resaltar item)
+	// detecto la variable 'nota' existe
+	try {
+		nota == ""; //comparo con cualquier cosa para que salga si crashea
+
+		//continúa ya que no crasheó (la nota existe!)
+
+		// resalto ultima entrada agregada (ayuda visual para el usuario)
+		if (nota == "nueva"){ // solo si no estoy eliminando item
+			resaltar_nuevoitem("reserva_muestra");
+		}else if (nota.split('_')[0] == "reserva"){ // detecto si se está moviendo un item
+			// selecciono item anterior al que quiero resaltar
+			resaltar_nuevoitem(nota);
+		}
+	} catch (error){ console.log("no hay nota"); }
+
 }
 function oculta_dialogo(element){
 	//limpio info primero
@@ -664,10 +682,27 @@ function cambiar_posicion(tipo, pos){
 	
 	//actualizo HTML con el nuevo orden
 	if ( (tipo+"s") == "entradas"){
-		actualiza_entradas_HTML();
+		actualiza_entradas_HTML("entrada_" + nuevaposicion );
 	} else if ( (tipo+"s") == "salidas"){	
-		actualiza_salidas_HTML();
+		actualiza_salidas_HTML("salida_" + nuevaposicion );
 	} else if ( (tipo+"s") == "reservas"){
-		actualiza_reservas_HTML();
+		actualiza_reservas_HTML("reserva_" + nuevaposicion );
 	}
+}
+function resaltar_nuevoitem(id){
+	//resalta ultima entrada o entrada que se mueve (ayuda visual para el usuario)
+	
+	var item = document.getElementById(id);
+
+	if (id.split('_')[1] == "muestra"){ //detecto estoy seleccionando muestra 'reserva_muestra', etc.
+		item = item.nextSibling; //selecciono primer item de la lista
+	}
+	item.classList.add("animacion_nuevoitem");
+	setTimeout(() => {
+		console.log("sleep...");
+		item.style.backgroundColor="#93EA00ff";
+		setTimeout(() => {
+			item.style.backgroundColor="#00808000";
+		}, 600);
+	}, 80);
 }
