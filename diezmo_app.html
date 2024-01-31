@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<header>
+<title>DiezmoApp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="estilos.css" type="text/css">
+<script src="scripts.js"></script>
+</header>	
+<body onload="inicio()">
+	<!-- <h1>DIEZMOS</h1> -->
+	<img class="logo_img" src="logo.webp" alt="DIEZMOS APP">
+	<div id="info_boton" class="info_boton" onclick="info()">i</div>
+	<div id="info_info" class="info_info">
+		<a onclick="info()"><br><br>> cerrar <</a>
+		<h1>Porciones donde se instruye el diezmo y la forma de administrarlo:</h1>
+		<p>Números 18:21; Números 18:24; Números 18:26, Números 18:28; Deuteronomio 12:17; Deuteronomio 14:22; Deuteronomio 14:28; Deuteronomio 26:12. <a class="info_enlace" href="https://www.biblegateway.com/passage/?search=N%C3%BAmeros+18%3A21%3B+N%C3%BAmeros+18%3A24%3B+N%C3%BAmeros+18%3A26%2C+N%C3%BAmeros+18%3A28%3B+Deuteronomio+12%3A17%3B+Deuteronomio+14%3A22%3B+Deuteronomio+14%3A28%3B+Deuteronomio+26%3A12&version=RVR1960" target="blank">Leer citas</a></p>
+		<h1>Quién es el receptor legítimo de los diezmos según la Toráh?</h1>
+		<p>> Levitas, descendientes de la tribu de Leví que están en servicio activo de acuerdo a las acatividades indicadas en la toráh. (no ministerios, ni iglesias, ni maestros)<br>
+		> Los necesitados en general (del pueblo de Israel)<br>
+		> Viudas y huérfanos del pueblo de Israel (necesitados)<br>
+		> Extranjeros (que estén en necesidad)<br>
+		> Para uno mismo (guardarlo para celebrar las fiestas de la Toráh exclusivamente)</p>
+		<h1>[datos] Por cuánto tiempo se almacenan los datos en esta web-app?</h1>
+		<p>Los datos se almacenan en tu teléfono, en la memoria caché de tu navegador y pueden durar mucho tiempo dependiendo del navegador utilizado, pero ten en cuenta que una actualización del navegador, una limpieza del sistema, etc. podrían borrar todos los datos. Por eso se recomienda tener una nota de respaldo de al menos el monto del diezmo que todavía está pendiente de utilizar mientras experimentas y pruebas esta aplicación.</p>
+		<h1>[privacidad] Es seguro almacenar mi información financiera en esta app?</h1>
+		<p>Esta web-app almacena los datos solamente en tu teléfono (no se suben a ningún servidor en internet ni se transmiten hacia ningún otro lado), es decir, tus datos no viajan por internet. El creador de esta aplicación no almacena ni tiene forma de obtener tus datos. Tienes que tener en cuenta que cualquier persona con acceso a tu teléfono y que entre a este sitio va a poder visualizar toda la información cargada.</p>
+		<h1>[privacidad] Cómo se puede mejorar la privacidad?</h1>
+		<p>Hay varias formas de mejorar tu privacidad haciendo que le quede más difícil a un atacante consultar los datos cargados en esta web-app:
+		<br><br>>Poniendo un pin de desbloqueo al teléfono.
+		<br><br>>Instalando una aplicación de seguridad para controlar el acceso a las aplicaciones (como al navegador desde donde utilizas esta app).
+		<br><br>>Limpiando frecuentemente todos los datos mediante el botón de limpieza, por ejemplo cuando la suma de los diezmos ingresados sea igual a la suma del diezmo utilizado/entregado (cuando los diezmos se han utilizado completamente 'DISPONIBLE = $0'). De manera que el registro de ingreso y egreso de diezmos sea lo más escueto posible.
+		</p>
+		<h1>Si te gustó esta aplicación puedes hacer una donación</h1>
+		<p>Al pie de la ventana tienes dos enlaces que te ofrecen varias formas de colaborar, con cualquier tarjeta de crédito o dévito que acepte pagos internacionales (Visa, Mastercard, etc.), o con saldo de Paypal. También con Bitcoin (On-chain o Lightning).</p>
+		<br>
+		<br>
+		<br>
+		<a onclick="info()">> cerrar <<br><br></a>
+	</div>
+	<hr>
+	<!-- sección info primaria -->
+	<div id=infoprimaria class="infoprimaria">
+		<div class="disponible_contenedor">
+			<div class="disponible_label">DISPONIBLE</div>
+			<div class="disponible_numero round"><span>$</span><span id="disponible_numero">cargando...</span><div id="reservado_num" class="reservado_num">re: <span>0,00</span></div></div>	
+		</div>
+	
+		<div class="infoprimaria_flecha">
+			<span><</span>	
+		</div>
+
+		<div class="acumulado_contenedor">
+			<div class="acumulado_label">ACUMULADO</div>
+			<div class="acumulado_numero round"><span>+</span><span id="acumulado_numero">0,00</span></div>
+			<br>
+			<div class="entregado_label">ENTREGADO</div>
+			<div class="entregado_numero round"><span>-</span><span id="entregado_numero">0,00</span></div>
+		</div>
+	</div>
+
+	<!-- sección tabs (entradas , salidas, reservas) -->
+	<div id="tabs_content">
+		
+		<div class="tab">
+			<button class="tablinks tab_entrada" onclick="abretab(event, 'entradas')" id="defaultOpen">Entradas</button>
+			<button class="tablinks tab_salida" onclick="abretab(event, 'salidas')">Salidas</button>
+			<button class="tablinks tab_reservas" onclick="abretab(event, 'reservas')">Reservas</button>
+			<div id="clean_boton" class="clean_boton"><span onclick="clean()">🧹</span></div>
+		</div>
+
+		<div id="entradas" class="tabcontent">
+				<div class="aniadir_boton" onclick='nueva_entrada(this)'><span>+ </span>AÑADIR ENTRADA</div>		
+			<div class="entradas_referencia">
+				<div>Neto</div>
+				<span>span</span>
+				<div>Diezmo</div>
+				<span>span</span>
+			</div>
+			
+			<!-- ENTRADAS -->
+			<div id="entrada_muestra" class="entrada muestra oculto">
+				<div class="entrada_config" onclick="menu_item('entrada')">⚙️</div>
+				<div class="entrada_info">
+					<div class="entrada_numeros">
+						<div class="entrada_monto"><span>$</span><num>1.300.000,00</num></div>	
+						<div class="entrada_raya"><hr></div>	
+						<div class="entrada_diezmo"><span>$</span><num>130.000,00</num></div>	
+						<div class="entrada_raya"><hr></div>	
+						<div class="entrada_porcentaje">10%</div>	
+					</div>
+					<div class="entrada_notayfecha">
+						<div>
+							Nota: <span class="entrada_nota">...</span>
+						</div>
+						<div>
+							Fecha: <span class="entrada_fecha">...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="salidas" class="tabcontent">
+
+			<div class="aniadir_boton" onclick="nueva_salida()"><span>+ </span>AÑADIR SALIDA</div>		
+			<div class="entradas_referencia">
+				<div>Monto</div>
+				<span>span</span>
+				<div></div>
+				<span>span</span>
+			</div>
+
+			<!-- SALIDAS -->
+			<div id="salida_muestra" class="entrada muestra oculto">
+				<div class="entrada_config" onclick="menu_item('salida')">⚙️</div>
+				<div class="entrada_info">
+					<div class="entrada_numeros">
+						<div class="salida_monto"><span>$</span><num>5000</num></div>	
+						<div class="entrada_raya"><hr></div>	
+					</div>
+					<div class="entrada_notayfecha">
+						<div>
+							Nota: <span class="entrada_nota">...</span>
+						</div>
+						<div>
+							Fecha: <span class="entrada_fecha">...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="reservas" class="tabcontent">
+
+			<div class="aniadir_boton" onclick="nueva_reserva()"><span>+ </span>AÑADIR RESERVA</div>		
+			<div class="entradas_referencia">
+				<div>Monto</div>
+				<span>span</span>
+				<div></div>
+				<span>span</span>
+			</div>
+
+			<!-- RESERVAS -->
+			<div id="reserva_muestra" class="entrada muestra oculto">
+				<div class="entrada_config" onclick="menu_item('reserva')">⚙️</div>
+				<div class="entrada_info">
+					<div class="entrada_numeros">
+						<div class="salida_monto"><span>$</span><num>5000</num></div>	
+						<div class="entrada_raya"><hr></div>	
+					</div>
+					<div class="entrada_notayfecha">
+						<div>
+							Nota: <span class="entrada_nota">...</span>
+						</div>
+						<div>
+							Fecha: <span class="entrada_fecha">...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- sección Pie de página -->
+	<div id=pie class="pie_contenedor">
+		<p>Si te gusta la app puedes decir 'gracias' enviando <a style="color: #e35700; text-shadow: 0px 0px 5px white;" href="https://coinos.io/estebanc">Bitcoin aquí</a>, o con <a style="color: #315dff; text-shadow: 0px 0px 5px white;" href="https://www.paypal.com/donate/?hosted_button_id=DTG94EYGCN5PG">Targeta o Paypal aquí</a></p>
+	</div>
+
+	<!-- pop-ups -->
+	<div id="dialogo_aniadirentrada" class="popup popup_aniadirentrada oculto">
+		<div class="popup_CANCEL" onclick="oculta_dialogo(this)">x</div>
+		<h3>Añadir entrada</h3>
+		<p>monto neto:</p>
+		<textarea id="" name="monto_neto_textarea" class="monto_neto_textarea" rows="1" maxlength="11" placeholder="opcional"></textarea>
+		<p>diezmo:</p>
+		<textarea id="" name="diezmo_textarea" class="diezmo_textarea" rows="1" maxlength="11" placeholder="0,00"></textarea>
+		<p>porcentaje:</p>
+		<select name="porcentaje_select" id="porcentaje_select" class="porcentaje_select">
+		    <option value="10%">10%</option>
+		    <option value="15%">15%</option>
+		    <option value="20%">20%</option>
+		    <option value="25%">25%</option>
+		    <option value="30%">30%</option>
+		    <option value="35%">35%</option>
+		    <option value="40%">40%</option>
+		    <option value="45%">45%</option>
+		    <option value="50%">50%</option>
+		    <option value="55%">55%</option>
+		    <option value="60%">60%</option>
+		    <option value="65%">65%</option>
+		    <option value="70%">70%</option>
+		    <option value="75%">75%</option>
+		    <option value="80%">80%</option>
+		    <option value="85%">85%</option>
+		    <option value="90%">90%</option>
+		    <option value="95%">95%</option>
+		    <option value="100%">100%</option>
+		</select>
+		<textarea name="dialogo_nota" class="dialogo_notayfecha" rows="1" placeholder="Nota opcional"></textarea>
+		<textarea name="dialogo_fecha" class="dialogo_notayfecha" rows="1" placeholder="Fecha opcional"></textarea>
+		<div class="popup_OK popup_OK_novalidado"><span>✔️</span></div>
+	</div>
+	<div id="dialogo_eliminarentrada" class="popup popup_eliminarentrada oculto">
+		<div class="popup_CANCEL" onclick="oculta_dialogo(this)">x</div>
+		<h3>Elimina entrada</h3>
+		<p>Realmente quieres eliminar la entrada?</p>
+		<div class="popup_OK"><span>✔️</span></div>
+	</div>
+
+	<div id="dialogo_aniadirsalida" class="popup popup_aniadirsalida oculto">
+		<div class="popup_CANCEL" onclick="oculta_dialogo(this)">x</div>
+		<h3>Añadir salida</h3>
+		<p>monto:</p>
+		<textarea id="" name="diezmo_textarea" class="diezmo_textarea" rows="1" maxlength="11" placeholder="0,00"></textarea>
+		<textarea name="dialogo_nota" class="dialogo_notayfecha" rows="1" placeholder="Nota opcional"></textarea>
+		<textarea name="dialogo_fecha" class="dialogo_notayfecha" rows="1" placeholder="Fecha opcional"></textarea>
+		<div class="popup_OK popup_OK_novalidado"><span>✔️</span></div>
+	</div>
+	<div id="dialogo_eliminarsalida" class="popup popup_eliminarsalida oculto">
+		<div class="popup_CANCEL">x</div>
+		<h3>Elimina salida</h3>
+		<p>Realmente quieres eliminar la salida?</p>
+		<div class="popup_OK"><span>✔️</span></div>
+	</div>
+	
+	<div id="dialogo_aniadirreserva" class="popup popup_aniadirreserva oculto">
+		<div class="popup_CANCEL" onclick="oculta_dialogo(this)">x</div>
+		<h3>Añadir reserva</h3>
+		<p>monto:</p>
+		<textarea id="" name="diezmo_textarea" class="diezmo_textarea" rows="1" maxlength="11" placeholder="0,00"></textarea>
+		<textarea name="dialogo_nota" class="dialogo_notayfecha" rows="1" placeholder="Nota opcional"></textarea>
+		<textarea name="dialogo_fecha" class="dialogo_notayfecha" rows="1" placeholder="Fecha opcional"></textarea>
+		<div class="popup_OK popup_OK_novalidado"><span>✔️</span></div>
+	</div>
+	<div id="dialogo_eliminarreserva" class="popup popup_eliminarreserva oculto">
+		<div class="popup_CANCEL">x</div>
+		<h3>Elimina reserva</h3>
+		<p>Realmente quieres eliminar la reserva?</p>
+		<div class="popup_OK"><span>✔️</span></div>
+	</div>
+
+	<div id="dialogo_eliminartodo" class="popup popup_eliminartodo oculto">
+		<div class="popup_CANCEL" onclick="oculta_dialogo(this)">x</div>
+		<h3>REINICIAR APP</h3>
+		<p>¿Realmente quieres eliminar todos los datos de la app?</p>
+		<p class="p_mini">Esto eliminará todos los registros de Entradas, Salidas, Reservas y preferencias. La operación no se puede deshacer.</p>
+		<div class="popup_OK" onclick="clean_ok()"><span>✔️</span></div>
+	</div>
+
+<!-- script para las tabs -->
+<script>
+	function abretab(evt, tabName) {
+	  var i, tabcontent, tablinks;
+	  tabcontent = document.getElementsByClassName("tabcontent");
+	  for (i = 0; i < tabcontent.length; i++) {
+	    tabcontent[i].style.display = "none";
+	  }
+	  tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+	    tablinks[i].className = tablinks[i].className.replace(" active", "");
+	  }
+	  document.getElementById(tabName).style.display = "block";
+	  evt.currentTarget.className += " active";
+	}
+
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html>

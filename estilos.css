@@ -38,6 +38,11 @@ hr {
   max-width: 63vw;
   animation: shineAnimation 5s infinite;
 }
+@media only screen and (max-width: 850px) {
+  .logo_img{
+    margin-top: 39px;
+  }
+}
 @keyframes shineAnimation {
     0% { filter: brightness(1); }
     50% { filter: brightness(1); }
@@ -591,6 +596,8 @@ hr {
   margin-bottom: 0px;
 }
 .popup_OK {
+  width: 37px;
+  height: 37px;
   font-size: 2em;
   padding: 18px 18px;
   margin-top: 20px;
