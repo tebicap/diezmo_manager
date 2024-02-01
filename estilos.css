@@ -714,7 +714,7 @@ hr {
 .popup_aniadirentrada > h3, .popup_eliminarentrada > h3 {
  color: #008080; 
 }
-@media only screen and (max-width: 850){
+@media only screen and (max-width: 850px){
   .popup_aniadirentrada{
     top: 10%; /* eleva popup en pantalla chica */
   }
