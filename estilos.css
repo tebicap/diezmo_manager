@@ -718,6 +718,14 @@ hr {
   .popup_aniadirentrada{
     top: 10%; /* eleva popup en pantalla chica */
   }
+  .popup_aniadirentrada > h3 {
+    margin-top: -16px;
+    margin-bottom: 3px;
+  }
+  .popup_aniadirentrada > .popup_OK {
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
 }
 .popup_aniadirsalida .diezmo_textarea, .popup_aniadirsalida > h3 {
  color: #800000ff; 
