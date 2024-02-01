@@ -714,6 +714,11 @@ hr {
 .popup_aniadirentrada > h3, .popup_eliminarentrada > h3 {
  color: #008080; 
 }
+@media only screen and (max-width: 850){
+  .popup_aniadirentrada{
+    top: 10%; /* eleva popup en pantalla chica */
+  }
+}
 .popup_aniadirsalida .diezmo_textarea, .popup_aniadirsalida > h3 {
  color: #800000ff; 
  border-color: #800000ff;
