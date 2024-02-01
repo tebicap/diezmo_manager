@@ -726,6 +726,9 @@ hr {
     margin-top: 16px;
     margin-bottom: 12px;
   }
+  .popup_aniadirentrada > p {
+    margin-top: 11px;
+  }
 }
 .popup_aniadirsalida .diezmo_textarea, .popup_aniadirsalida > h3 {
  color: #800000ff; 
