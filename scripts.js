@@ -231,6 +231,8 @@ function actualiza_entradas_HTML(nota){
 		}else if (nota.split('_')[0] == "entrada"){ // detecto si se está moviendo un item
 			// selecciono item anterior al que quiero resaltar
 			resaltar_nuevoitem(nota);
+		}else if (nota =="eliminar"){
+			guardar_localstorage();
 		}
 	} catch (error){ console.log("no hay nota"); }
 }
@@ -345,6 +347,8 @@ function actualiza_salidas_HTML(nota){
 		}else if (nota.split('_')[0] == "salida"){ // detecto si se está moviendo un item
 			// selecciono item anterior al que quiero resaltar
 			resaltar_nuevoitem(nota);
+		}else if (nota =="eliminar"){
+			guardar_localstorage();
 		}
 	} catch (error){ console.log("no hay nota"); }
 }
@@ -457,6 +461,8 @@ function actualiza_reservas_HTML(nota){
 		}else if (nota.split('_')[0] == "reserva"){ // detecto si se está moviendo un item
 			// selecciono item anterior al que quiero resaltar
 			resaltar_nuevoitem(nota);
+		}else if (nota =="eliminar"){
+			guardar_localstorage();
 		}
 	} catch (error){ console.log("no hay nota"); }
 
