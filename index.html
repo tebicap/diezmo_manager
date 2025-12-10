@@ -7,6 +7,19 @@
 <script src="scripts.js"></script>
 </header>	
 <body class="noscrollbar" onload="inicio()">
+
+    <!-- instalación service worker para uso ofline -->
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./serviceworker.js');
+
+          // Cuando cambia el SW → recargar
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            window.location.reload();
+          });
+        }
+    </script>
+
 	<!-- <h1>DIEZMOS</h1> -->
 	<img class="logo_img" src="logo.webp" alt="DIEZMOS APP">
 	<div id="info_boton" class="info_boton" onclick="info()">i</div>
