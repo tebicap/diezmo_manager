@@ -1,10 +1,9 @@
-CACHE_NAME = 'v1'; // actualizar nro cada vez que actualizo otros archivos para que los recargue
+CACHE_NAME = 'v2'; // actualizar nro cada vez que actualizo otros archivos para que los recargue
 
 const ASSETS = [
         './index.html',
         './estilos.css',
         './scripts.js',
-        './fuente/OpenSans.woff2',
         './logo.webp',
 	'./cross-scratches.png'
 ];
