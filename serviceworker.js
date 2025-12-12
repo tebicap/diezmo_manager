@@ -1,4 +1,4 @@
-CACHE_NAME = 'v5'; // actualizar nro cada vez que actualizo otros archivos para que los recargue
+CACHE_NAME = 'v7'; // actualizar nro cada vez que actualizo otros archivos para que los recargue
 
 const ASSETS = [
         './',
@@ -6,6 +6,9 @@ const ASSETS = [
         './estilos.css',
         './scripts.js',
         './logo.webp',
+        './icono_192.png',
+        './icono_512.png',
+        './manifest.json',
 	'./cross-scratches.png'
 ];
 
