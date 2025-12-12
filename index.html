@@ -291,5 +291,42 @@
 	// Get the element with id="defaultOpen" and click on it
 	document.getElementById("defaultOpen").click();
 </script>
+
+
+    <!-- script de instalación de app -->
+    <script>
+        const installBtn = document.getElementById('installBtn');
+        let deferredPrompt = null;
+
+        // 1. Captura evento en Android/Chrome
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          // El botón ya está visible por defecto
+        });
+
+        // 2. Click para instalar (Android/Chrome)
+        installBtn.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            deferredPrompt = null;
+          } else {
+            // iPhone u otros → mostrar instrucciones
+            alert('Para instalar, abre el menú del navegador y toca "Agregar a pantalla principal".');
+          }
+        });
+
+        // 3. Ocultar botón si YA ESTÁ INSTALADA
+        // **Android / Chrome / Windows**
+        window.addEventListener('appinstalled', () => {
+          installBtn.style.display = 'none';
+        });
+
+        // **iPhone** detecta modo standalone
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+          installBtn.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
