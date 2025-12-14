@@ -716,6 +716,6 @@ function resaltar_nuevoitem(id){
 //petición de persistencia al navegador, para para que no elimine los archivos cacheados con serviceworker y demás datos en localStorage. (No es infalible)
 async function asegurarPersistencia() {
   if (navigator.storage?.persist) {
-    await navigator.storage.persist().then(persistencia => {alert('persistencia?: ' + persistencia)});
+    await navigator.storage.persist().then(persistencia => {console.log('persistencia?: ' + persistencia)});
   }
 }
